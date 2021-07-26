@@ -1,3 +1,4 @@
+import 'package:absen/auth/login.dart';
 import 'package:absen/home.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: <Widget>[
               Container(
                   alignment: Alignment.topRight,
-                  padding: EdgeInsets.all(24.0),
+                  padding: EdgeInsets.only(top: 30.0),
                   child: FlatButton(
                     // make button trasparant
                     color: Colors.transparent,
@@ -93,7 +94,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 40.0),
+                margin: EdgeInsets.symmetric(vertical: 25.0),
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
@@ -107,7 +108,12 @@ class _SplashScreenState extends State<SplashScreen> {
                       fontFamily: "Raleway",
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                  },
                   color: Colors.white,
                   textColor: Colors.blue,
                 ),

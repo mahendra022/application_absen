@@ -1,3 +1,4 @@
+import 'package:absen/auth/login.dart';
 import 'package:absen/home.dart';
 import 'package:absen/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashScreen(),
         '/home': (context) => Home(),
+        '/login': (context) => LoginScreen()
       },
     );
   }
