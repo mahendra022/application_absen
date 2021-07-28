@@ -23,22 +23,27 @@ final kBoxDecorationStyle = BoxDecoration(
   ],
 );
 
-final categoryBox1 = BoxDecoration(
+final kBoxDecorationStyle1 = BoxDecoration(
   borderRadius: BorderRadius.circular(5.0),
+  color: Colors.blue[900],
+);
+
+final categoryBox1 = BoxDecoration(
+  borderRadius: BorderRadius.circular(10.0),
   color: Colors.red[400],
 );
 
 final categoryBox2 = BoxDecoration(
-  borderRadius: BorderRadius.circular(5.0),
+  borderRadius: BorderRadius.circular(10.0),
   color: Colors.amber,
 );
 
 final categoryBox3 = BoxDecoration(
-  borderRadius: BorderRadius.circular(5.0),
-  color: Colors.greenAccent,
+  borderRadius: BorderRadius.circular(10.0),
+  color: Colors.green,
 );
 
 final categoryBox4 = BoxDecoration(
-  borderRadius: BorderRadius.circular(5.0),
+  borderRadius: BorderRadius.circular(10.0),
   color: Colors.blueGrey,
 );

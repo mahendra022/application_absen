@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Raleway'),
       routes: {
-        '/': (context) => SplashScreen(),
-        '/home': (context) => Home(),
+        '/': (context) => Home(),
+        '/home': (context) => SplashScreen(),
         '/login': (context) => LoginScreen()
       },
     );

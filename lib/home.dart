@@ -82,10 +82,10 @@ class _HomeState extends State<Home> {
     return Column(
       children: <Widget>[
         Container(
-          decoration: kBoxDecorationStyle,
+           ,
           margin: const EdgeInsets.only(top: 42.0),
-          width: 400.0,
-          height: 200.0,
+          width: MediaQuery.of(context).size.width,
+          height: 200,
           padding: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
           child: Column(
             children: [
@@ -93,41 +93,103 @@ class _HomeState extends State<Home> {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 17,
+                    fontWeight: FontWeight.bold,
                   )),
-              Text("Eka Mahendra",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                  )),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Eka Mahendra",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Expanded(child: Divider()),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(top: 60.0),
+                    margin: const EdgeInsets.only(bottom: 20.0),
                     decoration: categoryBox1,
-                    width: 70.0,
-                    height: 70.0,
+                    width: 60.0,
+                    height: 60.0,
+                    child: IconButton(
+                      icon: Icon(Icons.qr_code_outlined),
+                      onPressed: () {
+                        print("Absen");
+                      },
+                      iconSize: 40,
+                      color: Colors.white,
+                    ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 60.0),
+                    margin: const EdgeInsets.only(bottom: 20.0),
                     decoration: categoryBox2,
-                    width: 70.0,
-                    height: 70.0,
+                    width: 60.0,
+                    height: 60.0,
+                    child: IconButton(
+                      icon: Icon(Icons.description_outlined),
+                      onPressed: () {
+                        print("Report");
+                      },
+                      iconSize: 40,
+                      color: Colors.white,
+                    ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 60.0),
+                    margin: const EdgeInsets.only(bottom: 20.0),
                     decoration: categoryBox3,
-                    width: 70.0,
-                    height: 70.0,
+                    width: 60.0,
+                    height: 60.0,
+                    child: IconButton(
+                      icon: Icon(Icons.badge),
+                      onPressed: () {
+                        print("ID");
+                      },
+                      iconSize: 40,
+                      color: Colors.white,
+                    ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 60.0),
+                    margin: const EdgeInsets.only(bottom: 20.0),
                     decoration: categoryBox4,
-                    width: 70.0,
-                    height: 70.0,
+                    width: 60.0,
+                    height: 60.0,
+                    child: IconButton(
+                      icon: Icon(Icons.person_outlined),
+                      onPressed: () {
+                        print("Profile");
+                      },
+                      iconSize: 40,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               )
+            ],
+          ),
+        ),
+        Container(
+          decoration: kBoxDecorationStyle1,
+          margin: const EdgeInsets.only(top: 42.0),
+          width: MediaQuery.of(context).size.width,
+          height: 450,
+          padding: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                child: Text("Tanggal"),
+              ),
+              Container(
+                child: Text("Tanggal"),
+              ),
+              Container(
+                child: Text("Tanggal"),
+              ),
+              Expanded(child: Divider()),
             ],
           ),
         ),
@@ -141,7 +203,7 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        currentIndex: 1, // this will be set when a new tab is tapped
+        currentIndex: 0, // this will be set when a new tab is tapped
         items: [
           BottomNavigationBarItem(
             icon: new Icon(Icons.home_outlined),
