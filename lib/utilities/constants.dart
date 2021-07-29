@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Page Home
 final kHintTextStyle = TextStyle(
   color: Colors.white54,
   fontFamily: 'OpenSans',
@@ -47,3 +48,5 @@ final categoryBox4 = BoxDecoration(
   borderRadius: BorderRadius.circular(10.0),
   color: Colors.blueGrey,
 );
+
+//Page Profile

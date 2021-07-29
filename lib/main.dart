@@ -1,5 +1,6 @@
 import 'package:absen/auth/login.dart';
 import 'package:absen/home.dart';
+import 'package:absen/screen/pageProfile.dart';
 import 'package:absen/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

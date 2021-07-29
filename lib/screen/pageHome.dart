@@ -311,6 +311,6 @@ class _PageHomeState extends State<PageHome> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white, body: _homePage());
+    return Scaffold(body: _homePage());
   }
 }
