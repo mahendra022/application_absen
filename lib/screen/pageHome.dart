@@ -71,7 +71,7 @@ class _PageHomeState extends State<PageHome> {
                 style: TextStyle(color: Colors.white, fontFamily: "Sen"),
               ),
               icon: Icon(
-                Icons.location_on,
+                Icons.location_on_outlined,
                 color: Colors.white,
               ),
               splashColor: Colors.transparent,
@@ -90,7 +90,7 @@ class _PageHomeState extends State<PageHome> {
                 print("Notification");
               },
               child: Icon(
-                Icons.notifications,
+                Icons.notifications_outlined,
                 color: Colors.white,
               ),
             )),
@@ -201,54 +201,72 @@ class _PageHomeState extends State<PageHome> {
   }
 
   Widget _tableRow() {
-    return Stack(
-      children: [
-        Container(
-            margin: const EdgeInsets.only(top: 10.0),
-            decoration: kBoxDecorationStyle2,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height - 480,
-            padding: const EdgeInsets.only(
-                top: 10.0, left: 10.0, right: 10.0, bottom: 10.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                        margin: const EdgeInsets.only(bottom: 20.0),
-                        child: Text(
-                          "tanggal",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Sen"),
-                        )),
-                    Container(
-                        margin: const EdgeInsets.only(bottom: 20.0),
-                        child: Text(
-                          "jam masuk",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Sen"),
-                        )),
-                    Container(
-                        margin: const EdgeInsets.only(bottom: 20.0),
-                        child: Text(
-                          "jam keluar",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Sen"),
-                        )),
-                  ],
-                ),
-              ],
-            )),
+    return DataTable(
+      sortColumnIndex: 0,
+      sortAscending: true,
+      columns: const <DataColumn>[
+        DataColumn(
+          label: Text(
+            'Tanggal',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        DataColumn(
+          label: Text(
+            'Jam masuk',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        DataColumn(
+          label: Text(
+            'Jam keluar',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
+      rows: const <DataRow>[
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('29 Juli 2021')),
+            DataCell(Text('06:43:00')),
+            DataCell(Text('17:43:00')),
+          ],
+        ),
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('28 Juli 2021')),
+            DataCell(Text('06:43:00')),
+            DataCell(Text('17:43:00')),
+          ],
+        ),
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('27 Juli 2021')),
+            DataCell(Text('06:43:00')),
+            DataCell(Text('17:43:00')),
+          ],
+        ),
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('26 Juli 2021')),
+            DataCell(Text('06:43:00')),
+            DataCell(Text('17:43:00')),
+          ],
+        ),
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('25 Juli 2021')),
+            DataCell(Text('06:43:00')),
+            DataCell(Text('17:43:00')),
+          ],
+        ),
+        DataRow(
+          cells: <DataCell>[
+            DataCell(Text('24  Juli 2021')),
+            DataCell(Text('06:43:00')),
+            DataCell(Text('17:43:00')),
+          ],
+        ),
       ],
     );
   }

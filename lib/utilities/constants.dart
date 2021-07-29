@@ -52,7 +52,7 @@ final categoryBox2 = BoxDecoration(
 
 final categoryBox3 = BoxDecoration(
   borderRadius: BorderRadius.circular(10.0),
-  color: Colors.green,
+  color: Colors.blue,
 );
 
 final categoryBox4 = BoxDecoration(

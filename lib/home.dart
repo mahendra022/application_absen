@@ -1,5 +1,6 @@
 import 'package:absen/screen/pageHome.dart';
 import 'package:absen/screen/pageProfile.dart';
+import 'package:absen/screen/pageReport.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -11,6 +12,7 @@ class _HomeState extends State<Home> {
   int pageIndex = 0;
   List<Widget> _pageList = <Widget>[
     PageHome(),
+    PageReport(),
     PageProfile(),
   ];
 
@@ -41,13 +43,6 @@ class _HomeState extends State<Home> {
             icon: new Icon(Icons.assessment_outlined),
             title: new Text(
               'Report',
-              style: TextStyle(color: Colors.black, fontFamily: "Sen"),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.mail_outline),
-            title: new Text(
-              'Messages',
               style: TextStyle(color: Colors.black, fontFamily: "Sen"),
             ),
           ),

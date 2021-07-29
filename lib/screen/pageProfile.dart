@@ -10,8 +10,8 @@ class _PageProfileState extends State<PageProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Column(
-          children: [Text("My Profle")],
+        body: Center(
+          child: Text("My Profile"),
         ));
   }
 }
