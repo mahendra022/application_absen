@@ -62,21 +62,27 @@ class _PageProfileState extends State<PageProfile> {
                 ),
               ),
             ),
-            Container(
-              child: Column(
+            Column(children: [
+              Container(
+                margin: const EdgeInsets.only(top: 88.0, left: 40),
+                child: Column(
+                  children: [
+                    Container(
+                        child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Eka Mahendra",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontFamily: "Quattro",
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )),
+                  ],
+                ),
+              ),
+              Column(
                 children: [
-                  Container(
-                      margin: const EdgeInsets.only(top: 88.0, left: 38),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Eka Mahendra",
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontFamily: "Quattro",
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )),
                   Container(
                       margin: const EdgeInsets.only(top: 10),
                       child: Align(
@@ -84,29 +90,32 @@ class _PageProfileState extends State<PageProfile> {
                         child: Text("Mobile Developer"),
                       )),
                   Container(
+                      padding: null,
                       margin: const EdgeInsets.only(left: 20),
-                      child: FlatButton.icon(
-                        onPressed: () {
-                          print("Location");
-                        },
-                        label: Text(
-                          "Depok, Indonesia",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Quattro",
-                              fontWeight: FontWeight.bold),
-                        ),
-                        icon: Icon(
-                          Icons.location_on,
-                          color: Colors.amber,
-                          size: 16,
-                        ),
-                        splashColor: Colors.transparent,
-                        color: Colors.transparent,
-                      )),
+                      child: Align(
+                          alignment: Alignment.topLeft,
+                          child: FlatButton.icon(
+                            onPressed: () {
+                              print("Location");
+                            },
+                            label: Text(
+                              "Depok, Indonesia",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "Quattro",
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            icon: Icon(
+                              Icons.location_on,
+                              color: Colors.amber,
+                              size: 16,
+                            ),
+                            splashColor: Colors.transparent,
+                            color: Colors.transparent,
+                          ))),
                 ],
-              ),
-            )
+              )
+            ])
           ],
         ),
       ],

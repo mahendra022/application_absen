@@ -130,7 +130,7 @@ class _PageHomeState extends State<PageHome> {
                 ),
               ),
               SizedBox(
-                height: 70,
+                height: 60,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -198,7 +198,7 @@ class _PageHomeState extends State<PageHome> {
 
   Widget _tableRow() {
     return DataTable(
-      sortColumnIndex: 0,
+      sortColumnIndex: 1,
       sortAscending: true,
       columns: const <DataColumn>[
         DataColumn(
@@ -258,7 +258,7 @@ class _PageHomeState extends State<PageHome> {
         ),
         DataRow(
           cells: <DataCell>[
-            DataCell(Text('24  Juli 2021')),
+            DataCell(Text('24 Juli 2021')),
             DataCell(Text('06:43:00')),
             DataCell(Text('17:43:00')),
           ],
@@ -281,8 +281,8 @@ class _PageHomeState extends State<PageHome> {
           ),
           Container(
             padding: EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 10.0,
+              horizontal: 30,
+              vertical: 10,
             ),
             width: double.infinity,
             child: Column(
@@ -300,10 +300,15 @@ class _PageHomeState extends State<PageHome> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                _tableRow()
               ],
             ),
           ),
+          Container(
+              margin: const EdgeInsets.only(top: 400),
+              width: double.infinity,
+              child: FittedBox(
+                child: _tableRow(),
+              ))
         ],
       ),
     );

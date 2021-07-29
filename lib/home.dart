@@ -24,12 +24,14 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.white,
       body: _pageList[pageIndex],
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
         currentIndex: pageIndex,
         onTap: (value) {
           setState(() {
             pageIndex = value;
           });
         },
+        backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
