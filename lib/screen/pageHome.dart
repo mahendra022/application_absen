@@ -102,41 +102,40 @@ class _PageHomeState extends State<PageHome> {
     return Column(
       children: <Widget>[
         Container(
-          decoration: kBoxDecorationStyle1,
-          margin: const EdgeInsets.only(top: 30.0),
+          margin: const EdgeInsets.only(top: 40.0),
           width: MediaQuery.of(context).size.width,
           height: 200,
           padding: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
           child: Column(
             children: [
-              Text("Selamat malam",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Sen",
-                  )),
+              Text(
+                "Selamat malam",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Sen",
+                ),
+              ),
               SizedBox(
                 height: 15,
               ),
               Text(
                 "Eka mahendra",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   fontFamily: "Sen",
                 ),
               ),
-              Expanded(
-                  child: Divider(
-                color: Colors.black,
-              )),
+              SizedBox(
+                height: 70,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(bottom: 20.0),
                     decoration: categoryBox1,
                     width: 50.0,
                     height: 50.0,
@@ -150,7 +149,6 @@ class _PageHomeState extends State<PageHome> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(bottom: 20.0),
                     decoration: categoryBox2,
                     width: 50.0,
                     height: 50.0,
@@ -164,7 +162,6 @@ class _PageHomeState extends State<PageHome> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(bottom: 20.0),
                     decoration: categoryBox3,
                     width: 50.0,
                     height: 50.0,
@@ -178,7 +175,6 @@ class _PageHomeState extends State<PageHome> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(bottom: 20.0),
                     decoration: categoryBox4,
                     width: 50.0,
                     height: 50.0,
@@ -294,7 +290,7 @@ class _PageHomeState extends State<PageHome> {
                 _navBar(),
                 _categoris(),
                 Container(
-                  margin: const EdgeInsets.only(top: 40.0),
+                  margin: const EdgeInsets.only(top: 50.0),
                   child: Text(
                     "satu minggu terakhir",
                     style: TextStyle(
