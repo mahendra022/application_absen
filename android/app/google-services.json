@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "513540388422",
+    "firebase_url": "https://ardent-strength-226405-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ardent-strength-226405",
+    "storage_bucket": "ardent-strength-226405.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513540388422:android:6383aa9fb598855f8b7c47",
+        "android_client_info": {
+          "package_name": "com.example.absen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513540388422-vnrckjfk3s0ahtrhulbu22fudsac1voa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEGvS_4aNp4yZjfHzmYYkdwFtFd_m3p1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513540388422-vnrckjfk3s0ahtrhulbu22fudsac1voa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
