@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  flutter_custom_clippers: ^2.0.0
+  firebase_core: ^1.4.0
+  firebase_database: ^7.1.2
 
 dev_dependencies:
   flutter_test:
@@ -41,11 +44,14 @@ flutter:
     - family: Raleway
       fonts:
          - asset: assets/font/Raleway.ttf
-         - asset: assets/font/Quattro.ttf
   #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
+    - family: Quatrro
+      fonts:
+         - asset: assets/font/Quattro.ttf
+
+    - family: Sen
+      fonts:
+         - asset: assets/font/Sen.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

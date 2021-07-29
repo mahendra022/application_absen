@@ -24,8 +24,20 @@ final kBoxDecorationStyle = BoxDecoration(
 );
 
 final kBoxDecorationStyle1 = BoxDecoration(
+  color: Colors.white,
+  borderRadius: BorderRadius.circular(10.0),
+  boxShadow: [
+    BoxShadow(
+      color: Colors.black12,
+      blurRadius: 6.0,
+      offset: Offset(0, 2),
+    ),
+  ],
+);
+
+final kBoxDecorationStyle2 = BoxDecoration(
   borderRadius: BorderRadius.circular(5.0),
-  color: Colors.blue[900],
+  color: Colors.lightBlue[900],
 );
 
 final categoryBox1 = BoxDecoration(
