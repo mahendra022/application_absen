@@ -1,5 +1,5 @@
 import 'package:absen/auth/login.dart';
-import 'package:absen/home.dart';
+import 'package:absen/navbar.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

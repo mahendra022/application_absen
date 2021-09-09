@@ -1,5 +1,10 @@
+import 'package:absen/screen/pageApproval.dart';
+import 'package:absen/screen/pageMedal.dart';
+import 'package:absen/screen/pageMove.dart';
+import 'package:absen/screen/pageReport.dart';
 import 'package:absen/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 class PageHome extends StatefulWidget {
   @override
@@ -62,6 +67,7 @@ class _PageHomeState extends State<PageHome> {
         ),
         Container(
             margin: const EdgeInsets.only(top: 30.0),
+            // ignore: deprecated_member_use
             child: FlatButton.icon(
               onPressed: () {
                 print("Location");
@@ -71,29 +77,26 @@ class _PageHomeState extends State<PageHome> {
                 style: TextStyle(color: Colors.white, fontFamily: "Sen"),
               ),
               icon: Icon(
-                Icons.location_on_outlined,
+                LineIcons.mapMarker,
                 color: Colors.white,
               ),
               splashColor: Colors.transparent,
               color: Colors.transparent,
             )),
         Container(
-            margin: const EdgeInsets.only(top: 30.0),
-            height: 40.0,
-            width: 40.0,
-            child: FlatButton(
-              // make button trasparant
-              color: Colors.transparent,
-              splashColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              onPressed: () {
-                print("Notification");
-              },
-              child: Icon(
-                Icons.notifications_outlined,
-                color: Colors.white,
-              ),
-            )),
+          margin: const EdgeInsets.only(top: 30.0),
+          child: IconButton(
+            icon: Icon(
+              LineIcons.bell,
+            ),
+            iconSize: 25,
+            color: Colors.white,
+            splashColor: Colors.transparent,
+            onPressed: () {
+              print("Notification");
+            },
+          ),
+        ),
       ],
     );
   }
@@ -140,9 +143,12 @@ class _PageHomeState extends State<PageHome> {
                     width: 50.0,
                     height: 50.0,
                     child: IconButton(
-                      icon: Icon(Icons.qr_code_outlined),
+                      icon: Icon(LineIcons.fileInvoice),
                       onPressed: () {
-                        print("Absen");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PageReport()),
+                        );
                       },
                       iconSize: 30,
                       color: Colors.white,
@@ -153,9 +159,13 @@ class _PageHomeState extends State<PageHome> {
                     width: 50.0,
                     height: 50.0,
                     child: IconButton(
-                      icon: Icon(Icons.description_outlined),
+                      icon: Icon(LineIcons.checkCircleAlt),
                       onPressed: () {
-                        print("Report");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PageApproval()),
+                        );
                       },
                       iconSize: 30,
                       color: Colors.white,
@@ -166,9 +176,12 @@ class _PageHomeState extends State<PageHome> {
                     width: 50.0,
                     height: 50.0,
                     child: IconButton(
-                      icon: Icon(Icons.badge),
+                      icon: Icon(LineIcons.medal),
                       onPressed: () {
-                        print("ID");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PageMedal()),
+                        );
                       },
                       iconSize: 30,
                       color: Colors.white,
@@ -179,9 +192,12 @@ class _PageHomeState extends State<PageHome> {
                     width: 50.0,
                     height: 50.0,
                     child: IconButton(
-                      icon: Icon(Icons.person_outlined),
+                      icon: Icon(LineIcons.route),
                       onPressed: () {
-                        print("Profile");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PageMove()),
+                        );
                       },
                       iconSize: 30,
                       color: Colors.white,
@@ -274,13 +290,13 @@ class _PageHomeState extends State<PageHome> {
           ClipPath(
             clipper: MyClipper(),
             child: Container(
-              color: Colors.lightBlue[900],
+              color: Colors.cyan[800],
               width: double.infinity,
               height: 300,
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(
+            margin: EdgeInsets.symmetric(
               horizontal: 30,
               vertical: 10,
             ),
@@ -290,11 +306,11 @@ class _PageHomeState extends State<PageHome> {
                 _navBar(),
                 _categoris(),
                 Container(
-                  margin: const EdgeInsets.only(top: 50.0),
+                  margin: const EdgeInsets.only(top: 35.0),
                   child: Text(
                     "satu minggu terakhir",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.cyan[800],
                         fontFamily: "Sen",
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
@@ -304,11 +320,12 @@ class _PageHomeState extends State<PageHome> {
             ),
           ),
           Container(
-              margin: const EdgeInsets.only(top: 400),
+              margin: const EdgeInsets.only(top: 390),
               width: double.infinity,
-              child: FittedBox(
+              child: SingleChildScrollView(
+                  child: FittedBox(
                 child: _tableRow(),
-              ))
+              ))),
         ],
       ),
     );

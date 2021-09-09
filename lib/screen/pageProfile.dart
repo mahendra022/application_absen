@@ -124,7 +124,7 @@ class _PageProfileState extends State<PageProfile> {
 
   Widget _pageProfile() {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[900],
+      backgroundColor: Colors.cyan[800],
       body: Stack(
         children: <Widget>[
           ClipPath(
@@ -132,7 +132,7 @@ class _PageProfileState extends State<PageProfile> {
             child: Container(
               color: Colors.white,
               width: double.infinity,
-              height: 500,
+              height: 300,
             ),
           ),
           Container(

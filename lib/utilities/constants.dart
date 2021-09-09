@@ -2,26 +2,23 @@ import 'package:flutter/material.dart';
 
 // Page Home
 final kHintTextStyle = TextStyle(
-  color: Colors.white54,
-  fontFamily: 'OpenSans',
+  color: Colors.black45,
+  fontFamily: 'Sen',
 );
 
 final kLabelStyle = TextStyle(
-  color: Colors.white,
+  color: Colors.blue[900],
   fontWeight: FontWeight.bold,
   fontFamily: 'OpenSans',
 );
 
 final kBoxDecorationStyle = BoxDecoration(
-  color: Color(0xFF6CA8F1),
-  borderRadius: BorderRadius.circular(10.0),
-  boxShadow: [
-    BoxShadow(
-      color: Colors.black12,
-      blurRadius: 6.0,
-      offset: Offset(0, 2),
+  border: Border(
+    bottom: BorderSide(
+      color: Colors.cyan[300],
+      width: 1.0,
     ),
-  ],
+  ),
 );
 
 final kBoxDecorationStyle2 = BoxDecoration(
@@ -49,4 +46,23 @@ final categoryBox4 = BoxDecoration(
   color: Colors.blueGrey,
 );
 
-//Page Profile
+//Page Absen
+final kHintTextStyleAbsen = TextStyle(
+  color: Colors.black54,
+  fontFamily: 'Sen',
+  fontSize: 15,
+);
+
+final kLabelStyleAbsen = TextStyle(
+    color: Colors.black54,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'OpenSans',
+    fontSize: 15);
+
+final kBoxDecorationStyleAbsen = BoxDecoration(
+  border: Border.all(
+    width: 1,
+    color: Colors.black38,
+  ),
+  borderRadius: BorderRadius.circular(6.0),
+);
