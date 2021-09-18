@@ -1,11 +1,13 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
-class PageApproval extends StatefulWidget {
+class PageCash extends StatefulWidget {
   @override
-  _PageApprovalState createState() => _PageApprovalState();
+  _PageCashState createState() => _PageCashState();
 }
 
-class _PageApprovalState extends State<PageApproval> {
+class _PageCashState extends State<PageCash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +35,7 @@ class _PageApprovalState extends State<PageApproval> {
                 ),
               ),
               Container(
+                alignment: Alignment.center,
                 child: Text(
                   'We are working hard to give you a better experince',
                   style: TextStyle(fontSize: 15, color: Colors.black45),

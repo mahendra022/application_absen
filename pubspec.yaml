@@ -7,13 +7,17 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.3
   flutter_custom_clippers: ^2.0.0
-  firebase_auth: ^3.0.1
-  provider: ^5.0.0
+  provider: ^6.0.0
   google_nav_bar: ^5.0.5
   line_icons: ^2.0.1
   direct_select: ^2.0.0
+  syncfusion_flutter_charts: ^19.2.62
+  carousel_slider: ^4.0.0
+  http: ^0.13.3
+  shared_preferences: ^2.0.7
+  page_transition: ^2.0.2
   
 dev_dependencies:
   flutter_test:
@@ -42,7 +46,7 @@ flutter:
   fonts:
     - family: Raleway
       fonts:
-         - asset: assets/font/Raleway.ttf
+         - asset: assets/font/Raleway-SemiBold.ttf
   #         style: italic
     - family: Quatrro
       fonts:
@@ -51,6 +55,10 @@ flutter:
     - family: Sen
       fonts:
          - asset: assets/font/Sen.ttf
+
+    - family: Kanit
+      fonts:
+         - asset: assets/font/Kanit.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

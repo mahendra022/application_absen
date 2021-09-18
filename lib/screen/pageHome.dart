@@ -1,101 +1,88 @@
-import 'package:absen/screen/pageApproval.dart';
+import 'dart:core';
+import 'dart:ui';
+import 'package:absen/screen/PageCash.dart';
+import 'package:absen/screen/pageAbsen.dart';
+import 'package:absen/screen/pageReport.dart';
+import 'package:absen/screen/pageSetting.dart';
+import 'package:absen/utilities/constants.dart';
 import 'package:absen/screen/pageMedal.dart';
 import 'package:absen/screen/pageMove.dart';
-import 'package:absen/screen/pageReport.dart';
-import 'package:absen/utilities/constants.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PageHome extends StatefulWidget {
   @override
   _PageHomeState createState() => _PageHomeState();
 }
 
-class MyClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height - 100);
-    path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 100);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
+class _PageHomeState extends State<PageHome> {
+  static final DateTime now = DateTime.now();
+  static final DateFormat formatter = DateFormat('EEEE, d MMM y');
+  final String formatted = formatter.format(now);
 
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
-}
-
-Widget _buildSocialBtn(Function onTap, AssetImage logo) {
-  return GestureDetector(
-    onTap: onTap,
-    child: Container(
-      margin: const EdgeInsets.only(top: 30.0),
-      height: 40.0,
-      width: 40.0,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            offset: Offset(0, 2),
-            blurRadius: 6.0,
+  Widget _buildSocialBtn(Function onTap, AssetImage logo) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 50.0,
+        width: 50.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4.0),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0, 1),
+              blurRadius: 2.0,
+            ),
+          ],
+          image: DecorationImage(
+            image: logo,
           ),
-        ],
-        image: DecorationImage(
-          image: logo,
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
-class _PageHomeState extends State<PageHome> {
   Widget _navBar() {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        _buildSocialBtn(
-          () => print('Profile'),
-          AssetImage(
-            'assets/img/profile-3.png',
+        Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 10,
+          ),
+          child: _buildSocialBtn(
+            () => print('Profile'),
+            AssetImage(
+              'assets/img/pico1.png',
+            ),
           ),
         ),
         Container(
-            margin: const EdgeInsets.only(top: 30.0),
-            // ignore: deprecated_member_use
-            child: FlatButton.icon(
-              onPressed: () {
-                print("Location");
-              },
-              label: Text(
-                "Depok, Indonesia",
-                style: TextStyle(color: Colors.white, fontFamily: "Sen"),
-              ),
-              icon: Icon(
-                LineIcons.mapMarker,
-                color: Colors.white,
-              ),
-              splashColor: Colors.transparent,
-              color: Colors.transparent,
-            )),
-        Container(
-          margin: const EdgeInsets.only(top: 30.0),
-          child: IconButton(
-            icon: Icon(
-              LineIcons.bell,
-            ),
-            iconSize: 25,
-            color: Colors.white,
-            splashColor: Colors.transparent,
-            onPressed: () {
-              print("Notification");
-            },
+          margin: EdgeInsets.symmetric(
+            horizontal: 3,
           ),
+          child: SizedBox(
+              height: 40.0,
+              width: 40.0,
+              child: IconButton(
+                  padding: EdgeInsets.all(0),
+                  icon: Icon(
+                    LineIcons.bell,
+                    size: 30.0,
+                    color: Colors.cyan[600],
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PageSetting()),
+                    );
+                  })),
         ),
       ],
     );
@@ -103,106 +90,167 @@ class _PageHomeState extends State<PageHome> {
 
   Widget _categoris() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          margin: const EdgeInsets.only(top: 40.0),
           width: MediaQuery.of(context).size.width,
-          height: 200,
-          padding: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+          height: 100,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Selamat malam",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Sen",
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                "Eka mahendra",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Sen",
-                ),
-              ),
-              SizedBox(
-                height: 60,
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    decoration: categoryBox1,
-                    width: 50.0,
-                    height: 50.0,
-                    child: IconButton(
-                      icon: Icon(LineIcons.fileInvoice),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PageReport()),
-                        );
-                      },
-                      iconSize: 30,
-                      color: Colors.white,
-                    ),
+                  Column(
+                    children: [
+                      Container(
+                        decoration: categoryBox1,
+                        width: 50.0,
+                        height: 50.0,
+                        child: IconButton(
+                          icon: Icon(LineIcons.mapMarked),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PageAbsen()),
+                            );
+                          },
+                          iconSize: 30,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: Text(
+                          'Presensi',
+                          style: TextStyle(color: Colors.black54, fontSize: 15),
+                        ),
+                      ),
+                    ],
                   ),
-                  Container(
-                    decoration: categoryBox2,
-                    width: 50.0,
-                    height: 50.0,
-                    child: IconButton(
-                      icon: Icon(LineIcons.checkCircleAlt),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PageApproval()),
-                        );
-                      },
-                      iconSize: 30,
-                      color: Colors.white,
-                    ),
+                  Column(
+                    children: [
+                      Container(
+                        decoration: categoryBox1,
+                        width: 50.0,
+                        height: 50.0,
+                        child: IconButton(
+                          icon: Icon(LineIcons.calendarCheck),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PageCash()),
+                            );
+                          },
+                          iconSize: 30,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: Text(
+                          'Request',
+                          style: TextStyle(color: Colors.black54, fontSize: 15),
+                        ),
+                      ),
+                    ],
                   ),
-                  Container(
-                    decoration: categoryBox3,
-                    width: 50.0,
-                    height: 50.0,
-                    child: IconButton(
-                      icon: Icon(LineIcons.medal),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PageMedal()),
-                        );
-                      },
-                      iconSize: 30,
-                      color: Colors.white,
-                    ),
+                  Column(
+                    children: [
+                      Container(
+                        decoration: categoryBox1,
+                        width: 50.0,
+                        height: 50.0,
+                        child: IconButton(
+                          icon: Icon(LineIcons.wallet),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PageCash()),
+                            );
+                          },
+                          iconSize: 30,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: Text(
+                          'Cash',
+                          style: TextStyle(color: Colors.black54, fontSize: 15),
+                        ),
+                      ),
+                    ],
                   ),
-                  Container(
-                    decoration: categoryBox4,
-                    width: 50.0,
-                    height: 50.0,
-                    child: IconButton(
-                      icon: Icon(LineIcons.route),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PageMove()),
-                        );
-                      },
-                      iconSize: 30,
-                      color: Colors.white,
-                    ),
+                  Column(
+                    children: [
+                      Container(
+                        decoration: categoryBox1,
+                        width: 50.0,
+                        height: 50.0,
+                        child: IconButton(
+                          icon: Icon(LineIcons.certificate),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PageMedal()),
+                            );
+                          },
+                          iconSize: 30,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: Text(
+                          'Asset',
+                          style: TextStyle(color: Colors.black54, fontSize: 15),
+                        ),
+                      ),
+                    ],
                   ),
+                  Column(
+                    children: [
+                      Container(
+                        decoration: categoryBox1,
+                        width: 50.0,
+                        height: 50.0,
+                        child: IconButton(
+                          icon: Icon(LineIcons.route),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PageMove()),
+                            );
+                          },
+                          iconSize: 30,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: Text(
+                          'Mobil',
+                          style: TextStyle(color: Colors.black54, fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               )
             ],
@@ -212,120 +260,386 @@ class _PageHomeState extends State<PageHome> {
     );
   }
 
-  Widget _tableRow() {
-    return DataTable(
-      sortColumnIndex: 1,
-      sortAscending: true,
-      columns: const <DataColumn>[
-        DataColumn(
-          label: Text(
-            'Tanggal',
-            style: TextStyle(fontWeight: FontWeight.bold),
+  /// controlerr notification slider
+  int indexNotifSlider = 0;
+  List<String> cardListNotif = [
+    'assets/img/pemberitahuan1.png',
+    'assets/img/pemberitahuan2.png',
+  ];
+
+  Widget _notifSlider() {
+    return Container(
+      height: 130,
+      width: MediaQuery.of(context).size.width,
+      child: CarouselSlider(
+        options: CarouselOptions(
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 8),
+          autoPlayAnimationDuration: Duration(milliseconds: 1000),
+          autoPlayCurve: Curves.fastOutSlowIn,
+          pauseAutoPlayOnTouch: true,
+          enlargeCenterPage: true,
+          viewportFraction: 1,
+        ),
+        items: cardList.map((item) {
+          return Container(
+            height: 130,
+            width: MediaQuery.of(context).size.width + 0.2,
+            padding: EdgeInsets.only(left: 10, right: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                image: DecorationImage(
+                    //size image 300x130 pixsel
+                    image: AssetImage(item),
+                    fit: BoxFit.cover)),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  /// controlerr service slider
+  int indexSlider = 0;
+  List<String> cardList = [
+    'assets/img/pemberitahuan1.png',
+    'assets/img/pemberitahuan2.png',
+  ];
+
+  Widget _serviceSlider() {
+    return Container(
+      height: 130,
+      width: MediaQuery.of(context).size.width,
+      child: CarouselSlider(
+        options: CarouselOptions(
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 8),
+          autoPlayAnimationDuration: Duration(milliseconds: 1000),
+          autoPlayCurve: Curves.fastOutSlowIn,
+          pauseAutoPlayOnTouch: true,
+          enlargeCenterPage: true,
+          viewportFraction: 1,
+        ),
+        items: cardList.map((item) {
+          return Container(
+            height: 130,
+            width: MediaQuery.of(context).size.width + 0.2,
+            padding: EdgeInsets.only(left: 10, right: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                image: DecorationImage(
+                    //size image 300x130 pixsel
+                    image: AssetImage(item),
+                    fit: BoxFit.cover)),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget _info() {
+    return Column(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width * 0.90,
+          height: 185,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
           ),
-        ),
-        DataColumn(
-          label: Text(
-            'Jam masuk',
-            style: TextStyle(fontWeight: FontWeight.bold),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 5,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              height: 35,
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: FittedBox(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Eka Mahendra',
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      color: Colors.black45,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              )),
+                          Text(
+                            'ID134180801',
+                            style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.black38,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        formatted,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.black38,
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                height: 16.0,
+                                width: 16.0,
+                                child: new IconButton(
+                                    padding: new EdgeInsets.all(0),
+                                    icon: new Icon(
+                                      Icons.location_on,
+                                      size: 16.0,
+                                      color: Colors.amber[600],
+                                    ),
+                                    onPressed: () {})),
+                            Text(
+                              'Depok, Indonesia',
+                              style: TextStyle(
+                                  color: Colors.green[600],
+                                  fontFamily: "Raleway",
+                                  fontSize: 13),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PageReport()),
+                          );
+                        },
+                        child: Container(
+                          height: 80,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.cyan[700]),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width / 5,
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 5,
+                                  vertical: 5,
+                                ),
+                                height: 60,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Hadir',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    ),
+                                    SizedBox(
+                                      height: 7,
+                                    ),
+                                    Text(
+                                      '12 Hari',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              VerticalDivider(
+                                color: Colors.white,
+                                width: 0,
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width / 4,
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 5,
+                                  vertical: 5,
+                                ),
+                                height: 60,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Tidak Hadir',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    ),
+                                    SizedBox(
+                                      height: 7,
+                                    ),
+                                    Text(
+                                      '2 Hari',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              VerticalDivider(
+                                color: Colors.white,
+                                width: 0.0,
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width / 5,
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 5,
+                                  vertical: 5,
+                                ),
+                                height: 60,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Izin',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    ),
+                                    SizedBox(
+                                      height: 7,
+                                    ),
+                                    Text(
+                                      '1 Hari',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ))
+            ],
           ),
-        ),
-        DataColumn(
-          label: Text(
-            'Jam keluar',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
-      rows: const <DataRow>[
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('29 Juli 2021')),
-            DataCell(Text('06:43:00')),
-            DataCell(Text('17:43:00')),
-          ],
-        ),
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('28 Juli 2021')),
-            DataCell(Text('06:43:00')),
-            DataCell(Text('17:43:00')),
-          ],
-        ),
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('27 Juli 2021')),
-            DataCell(Text('06:43:00')),
-            DataCell(Text('17:43:00')),
-          ],
-        ),
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('26 Juli 2021')),
-            DataCell(Text('06:43:00')),
-            DataCell(Text('17:43:00')),
-          ],
-        ),
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('25 Juli 2021')),
-            DataCell(Text('06:43:00')),
-            DataCell(Text('17:43:00')),
-          ],
-        ),
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('24 Juli 2021')),
-            DataCell(Text('06:43:00')),
-            DataCell(Text('17:43:00')),
-          ],
-        ),
+        )
       ],
     );
   }
 
   Widget _homePage() {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10))),
+        bottom: PreferredSize(
+            preferredSize: Size.fromHeight(240),
+            child: Column(
+              children: [
+                Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
+                    child: Column(
+                      children: [
+                        Center(
+                          child: _navBar(),
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.04),
+                        _info()
+                      ],
+                    )),
+              ],
+            )),
+      ),
       body: Stack(
         children: <Widget>[
-          ClipPath(
-            clipper: MyClipper(),
-            child: Container(
-              color: Colors.cyan[800],
-              width: double.infinity,
-              height: 300,
-            ),
-          ),
           Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: 30,
-              vertical: 10,
-            ),
-            width: double.infinity,
-            child: Column(
-              children: <Widget>[
-                _navBar(),
-                _categoris(),
-                Container(
-                  margin: const EdgeInsets.only(top: 35.0),
-                  child: Text(
-                    "satu minggu terakhir",
-                    style: TextStyle(
-                        color: Colors.cyan[800],
-                        fontFamily: "Sen",
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-              margin: const EdgeInsets.only(top: 390),
+              color: Colors.white,
               width: double.infinity,
               child: SingleChildScrollView(
-                  child: FittedBox(
-                child: _tableRow(),
-              ))),
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: _categoris(),
+                    ),
+                    Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 5,
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.99,
+                        child: Column(
+                          children: [
+                            Container(
+                                child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.02),
+                                  Container(
+                                    child: Text('Pemberitahuan',
+                                        style: TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w700)),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  _notifSlider(),
+                                  SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.03),
+                                  Container(
+                                    child: Text('Pico Service',
+                                        style: TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w700)),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  _notifSlider(),
+                                ],
+                              ),
+                            )),
+                          ],
+                        )),
+                  ],
+                ),
+              )),
         ],
       ),
     );

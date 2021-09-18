@@ -12,11 +12,20 @@ final kLabelStyle = TextStyle(
   fontFamily: 'OpenSans',
 );
 
+final kBoxDecorationStyleLogin = BoxDecoration(
+  border: Border(
+    bottom: BorderSide(
+      color: Colors.cyan[800],
+      width: 1.0,
+    ),
+  ),
+);
+
 final kBoxDecorationStyle = BoxDecoration(
   border: Border(
     bottom: BorderSide(
-      color: Colors.cyan[300],
-      width: 1.0,
+      color: Colors.black26,
+      width: 0.2,
     ),
   ),
 );
@@ -28,22 +37,7 @@ final kBoxDecorationStyle2 = BoxDecoration(
 
 final categoryBox1 = BoxDecoration(
   borderRadius: BorderRadius.circular(10.0),
-  color: Colors.red[400],
-);
-
-final categoryBox2 = BoxDecoration(
-  borderRadius: BorderRadius.circular(10.0),
-  color: Colors.amber,
-);
-
-final categoryBox3 = BoxDecoration(
-  borderRadius: BorderRadius.circular(10.0),
-  color: Colors.blue,
-);
-
-final categoryBox4 = BoxDecoration(
-  borderRadius: BorderRadius.circular(10.0),
-  color: Colors.blueGrey,
+  color: Colors.cyan[700],
 );
 
 //Page Absen

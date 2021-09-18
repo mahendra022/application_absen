@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class PageApproval extends StatefulWidget {
+class PageCare extends StatefulWidget {
   @override
-  _PageApprovalState createState() => _PageApprovalState();
+  _PageCareState createState() => _PageCareState();
 }
 
-class _PageApprovalState extends State<PageApproval> {
+class _PageCareState extends State<PageCare> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,8 +1,7 @@
-import 'package:absen/screen/pageAbsen.dart';
+import 'package:absen/screen/pageCare.dart';
 import 'package:absen/screen/pageHome.dart';
 import 'package:absen/screen/pageSetting.dart';
 import 'package:absen/screen/pageProfile.dart';
-import 'package:absen/screen/pageReport.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -16,7 +15,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
     PageHome(),
-    PageAbsen(),
+    PageCare(),
     PageProfile(),
     PageSetting(),
   ];
@@ -40,33 +39,33 @@ class _HomeState extends State<Home> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 3),
             child: GNav(
               rippleColor: Colors.grey[300],
               hoverColor: Colors.grey[100],
               gap: 8,
-              activeColor: Colors.cyan[900],
+              activeColor: Colors.white,
               iconSize: 25,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: 17, vertical: 10),
               duration: Duration(milliseconds: 400),
-              tabBackgroundColor: Colors.blue[100],
-              color: Colors.black,
+              tabBackgroundColor: Colors.cyan[600],
+              color: Colors.black54,
               tabs: [
                 GButton(
                   icon: LineIcons.home,
                   text: 'Home',
                 ),
                 GButton(
-                  icon: LineIcons.fingerprint,
-                  text: 'Absen',
+                  icon: LineIcons.commentDots,
+                  text: 'Care',
                 ),
                 GButton(
                   icon: LineIcons.user,
-                  text: 'Profile',
+                  text: 'Proflie',
                 ),
                 GButton(
                   icon: LineIcons.cog,
-                  text: 'Profile',
+                  text: 'Setting',
                 ),
               ],
               selectedIndex: _selectedIndex,
