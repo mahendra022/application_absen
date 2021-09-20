@@ -1,5 +1,4 @@
-import 'package:absen/auth/login.dart';
-import 'package:absen/screen/splash_screen.dart';
+import 'package:absen/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -18,9 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Sen'),
       routes: {
-        '/': (context) => LoginScreen(),
-        '/home': (context) => SplashScreen(),
-        '/login': (context) => LoginScreen()
+        '/': (context) => Home(),
       },
     );
   }

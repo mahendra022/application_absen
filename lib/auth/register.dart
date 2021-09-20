@@ -9,6 +9,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  // ignore: unused_field
   bool _rememberMe = false;
 
   Widget _buildEmailTF() {
@@ -120,6 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
+      // ignore: deprecated_member_use
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () => print('Sign up Button Pressed'),
@@ -154,53 +156,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         SizedBox(height: 20.0),
       ],
-    );
-  }
-
-  Widget _buildSocialBtn(Function onTap, AssetImage logo) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 40.0,
-        width: 40.0,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black26,
-              offset: Offset(0, 2),
-              blurRadius: 6.0,
-            ),
-          ],
-          image: DecorationImage(
-            image: logo,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSocialBtnRow() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 30.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _buildSocialBtn(
-            () => print('Login with Facebook'),
-            AssetImage(
-              'assets/img/facebook.jpg',
-            ),
-          ),
-          _buildSocialBtn(
-            () => print('Login with Google'),
-            AssetImage(
-              'assets/img/google.jpg',
-            ),
-          ),
-        ],
-      ),
     );
   }
 

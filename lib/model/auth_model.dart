@@ -35,7 +35,7 @@ class AuthModel {
   final String updatedAt;
   final String deletedAt;
 
-  factory AuthModel.fromMap(Map<dynamic, dynamic> json) => AuthModel(
+  factory AuthModel.fromMap(Map<String, dynamic> json) => AuthModel(
         id: json["id"],
         name: json["name"],
         email: json["email"],
@@ -53,7 +53,7 @@ class AuthModel {
         deletedAt: json["deleted_at"],
       );
 
-  Map<dynamic, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,
         "email": email,

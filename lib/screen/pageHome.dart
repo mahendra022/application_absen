@@ -11,7 +11,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PageHome extends StatefulWidget {
   @override
@@ -305,6 +304,7 @@ class _PageHomeState extends State<PageHome> {
     'assets/img/pemberitahuan2.png',
   ];
 
+  // ignore: unused_element
   Widget _serviceSlider() {
     return Container(
       height: 130,

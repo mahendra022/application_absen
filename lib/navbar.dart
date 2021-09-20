@@ -1,3 +1,4 @@
+import 'package:absen/auth/login.dart';
 import 'package:absen/screen/pageCare.dart';
 import 'package:absen/screen/pageHome.dart';
 import 'package:absen/screen/pageSetting.dart';
@@ -5,6 +6,7 @@ import 'package:absen/screen/pageProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,6 +14,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  SharedPreferences sharedPreferences;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
+
+  checkLoginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getString('token') == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+          (Route<dynamic> route) => false);
+    }
+  }
+
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
     PageHome(),

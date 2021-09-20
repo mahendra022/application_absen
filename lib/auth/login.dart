@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:ui';
 import 'package:absen/model/auth_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:absen/navbar.dart';
@@ -6,72 +8,113 @@ import 'package:absen/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-TextEditingController emailController = TextEditingController(text: "");
+TextEditingController nikController = TextEditingController(text: "");
 TextEditingController passwordController = TextEditingController(text: "");
 
-class MyClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height - 100);
-    path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 100);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
-}
+bool _rememberMe = false;
+bool _isLoading = false;
+Timer _timer;
+List<AuthModel> listUser = [];
+int index = 0;
+// ignore: non_constant_identifier_names
+final url_Auth = Uri.parse("http://api.picosd.com/oauth/api/auth");
+var jsonData;
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _rememberMe = false;
-  bool _isLoading = false;
-  List<AuthModel> listUser = [];
-  int index = 0;
-  final url_Auth = Uri.parse(
-      "https://script.google.com/macros/s/AKfycbzefQWpkE31t5d9Mt0khhs0W6ia7Ft3eFPKwS20yW3BNr46HtM/exec");
-
-  Future _signIn(String email, String password) async {
-    var getEmail = email;
-    var getPassword = password;
-    var response = await http.get(url_Auth);
-    final jsonItems = json.decode(response.body);
-    for (Map user in jsonItems) {
-      listUser.add(AuthModel.fromMap(user));
-      if (getEmail == listUser[index].email &&
-          getPassword == listUser[index].password) {
+  Future _signIn(String nik, String password) async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      var response =
+          await http.post(url_Auth, body: {'nik': nik, 'password': password});
+      jsonData = jsonDecode(response.body)["data"];
+      if (response.statusCode == 200) {
         setState(() {
+          sharedPreferences.setString("token", jsonData['token']);
           _isLoading = false;
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => Home()),
               (route) => false);
         });
+      } else {
+        setState(() {
+          _isLoading = false;
+          alertDanger("Username or Password incorrect");
+        });
       }
-      index++;
+    } catch (e) {
+      print(e);
     }
   }
 
-  Widget _buildEmailTF() {
+  /// alert
+  void alertDanger(String message) async {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        _timer = Timer(Duration(seconds: 2), () {
+          Navigator.of(context).pop();
+        });
+        return AlertDialog(
+            title: Container(
+          child: Column(
+            children: [
+              LineIcon(
+                LineIcons.timesCircle,
+                color: Colors.red,
+                size: 60,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'WARNING',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.red[300],
+                    fontFamily: 'Quattro'),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                message,
+                style: TextStyle(
+                    fontSize: 16, color: Colors.black54, fontFamily: 'Quattro'),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ));
+      },
+    ).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
+  }
+
+  Widget _buildNik() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
           decoration: kBoxDecorationStyleLogin,
           height: 50.0,
-          child: TextField(
-            controller: emailController,
+          child: TextFormField(
+            key: Key("nik"),
+            controller: nikController,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.black87,
@@ -81,13 +124,16 @@ class _LoginScreenState extends State<LoginScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                LineIcons.envelope,
+                LineIcons.fingerprint,
                 color: Colors.blue,
                 size: 20,
               ),
-              hintText: 'Enter your Email',
+              hintText: 'Enter your Nik',
               hintStyle: kHintTextStyle,
             ),
+            onSaved: (value) {
+              nikController.text = value;
+            },
           ),
         ),
       ],
@@ -101,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Container(
           decoration: kBoxDecorationStyleLogin,
           height: 50.0,
-          child: TextField(
+          child: TextFormField(
             obscureText: true,
             controller: passwordController,
             keyboardType: TextInputType.visiblePassword,
@@ -156,13 +202,14 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       child: _isLoading
           ? Center(child: CircularProgressIndicator())
+          // ignore: deprecated_member_use
           : RaisedButton(
               elevation: 5.0,
               onPressed: () {
                 setState(() {
                   _isLoading = true;
                 });
-                _signIn(emailController.text, passwordController.text);
+                _signIn(nikController.text, passwordController.text);
               },
               padding: EdgeInsets.all(10.0),
               shape: RoundedRectangleBorder(
@@ -233,17 +280,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           Container(
                             margin: const EdgeInsets.only(top: 10),
                             padding: EdgeInsets.symmetric(
-                              horizontal: 40.0,
+                              horizontal: 50.0,
                               vertical: 10,
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                _buildEmailTF(),
-                                SizedBox(
-                                  height: 30.0,
+                                Form(
+                                  child: Column(
+                                    children: [
+                                      _buildNik(),
+                                      SizedBox(
+                                        height: 30.0,
+                                      ),
+                                      _buildPasswordTF(),
+                                    ],
+                                  ),
                                 ),
-                                _buildPasswordTF(),
                                 SizedBox(height: 20),
                                 _buildRememberMeCheckbox(),
                                 _buildLoginBtn(),

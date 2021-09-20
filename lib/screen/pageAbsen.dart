@@ -44,9 +44,8 @@ class _PageAbsenState extends State<PageAbsen> {
 
   @override
   void initState() {
-    startJam();
-    // TODO: implement initState
     super.initState();
+    startJam();
   }
 
   Widget _navigation() {
@@ -321,6 +320,7 @@ class _PageAbsenState extends State<PageAbsen> {
                                 )),
                             Container(
                               width: 110,
+                              // ignore: deprecated_member_use
                               child: RaisedButton(
                                 onPressed: () {
                                   print('submit');

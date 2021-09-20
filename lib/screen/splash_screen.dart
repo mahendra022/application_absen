@@ -26,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
               Container(
                   alignment: Alignment.topRight,
                   padding: EdgeInsets.only(top: 30.0),
+                  // ignore: deprecated_member_use
                   child: FlatButton(
                     // make button trasparant
                     color: Colors.transparent,
@@ -96,6 +97,7 @@ class _SplashScreenState extends State<SplashScreen> {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 25.0),
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                // ignore: deprecated_member_use
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(7.0)),

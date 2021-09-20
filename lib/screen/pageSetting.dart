@@ -52,30 +52,35 @@ class _PageSettingState extends State<PageSetting> {
   Widget _account() {
     return Row(
       children: [
-        Container(
-            margin: EdgeInsets.only(left: 13, top: 10),
-            height: 55,
-            width: MediaQuery.of(context).size.width * 0.92,
-            decoration: kBoxDecorationStyle,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _textAccount(),
-                Container(
-                  child: IconButton(
-                    icon: Icon(
-                      LineIcons.angleRight,
+        GestureDetector(
+          onTap: () {
+            print('Akun');
+          },
+          child: Container(
+              margin: EdgeInsets.only(left: 13, top: 10),
+              height: 55,
+              width: MediaQuery.of(context).size.width * 0.92,
+              decoration: kBoxDecorationStyle,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _textAccount(),
+                  Container(
+                    child: IconButton(
+                      icon: Icon(
+                        LineIcons.angleRight,
+                      ),
+                      iconSize: 16,
+                      color: Colors.black,
+                      splashColor: Colors.transparent,
+                      onPressed: () {
+                        print("Akun");
+                      },
                     ),
-                    iconSize: 16,
-                    color: Colors.black,
-                    splashColor: Colors.transparent,
-                    onPressed: () {
-                      print("Akun");
-                    },
                   ),
-                ),
-              ],
-            )),
+                ],
+              )),
+        ),
       ],
     );
   }
@@ -121,30 +126,35 @@ class _PageSettingState extends State<PageSetting> {
   Widget _notifikasi() {
     return Row(
       children: [
-        Container(
-            margin: EdgeInsets.only(left: 13, top: 10),
-            height: 55,
-            width: MediaQuery.of(context).size.width * 0.92,
-            decoration: kBoxDecorationStyle,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _textNotifikasi(),
-                Container(
-                  child: IconButton(
-                    icon: Icon(
-                      LineIcons.angleRight,
+        GestureDetector(
+          onTap: () {
+            print('Notifikasi');
+          },
+          child: Container(
+              margin: EdgeInsets.only(left: 13, top: 10),
+              height: 55,
+              width: MediaQuery.of(context).size.width * 0.92,
+              decoration: kBoxDecorationStyle,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _textNotifikasi(),
+                  Container(
+                    child: IconButton(
+                      icon: Icon(
+                        LineIcons.angleRight,
+                      ),
+                      iconSize: 16,
+                      color: Colors.black,
+                      splashColor: Colors.transparent,
+                      onPressed: () {
+                        print("Notifikasi");
+                      },
                     ),
-                    iconSize: 16,
-                    color: Colors.black,
-                    splashColor: Colors.transparent,
-                    onPressed: () {
-                      print("Notifikasi");
-                    },
                   ),
-                ),
-              ],
-            )),
+                ],
+              )),
+        ),
       ],
     );
   }
@@ -287,8 +297,6 @@ class _PageSettingState extends State<PageSetting> {
         ));
   }
 
-  SharedPreferences sharedPreferences;
-
   /// page menu logout
   Widget _logout() {
     return GestureDetector(
@@ -297,26 +305,31 @@ class _PageSettingState extends State<PageSetting> {
         },
         child: Row(
           children: [
-            Container(
-                margin: EdgeInsets.only(left: 13, top: 5),
-                height: 55,
-                width: MediaQuery.of(context).size.width * 0.92,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Keluar',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Quattro',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15),
+            GestureDetector(
+              onTap: () {
+                _showModalExit(context);
+              },
+              child: Container(
+                  margin: EdgeInsets.only(left: 13, top: 5),
+                  height: 55,
+                  width: MediaQuery.of(context).size.width * 0.92,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Keluar',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Quattro',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15),
+                        ),
                       ),
-                    ),
-                  ],
-                )),
+                    ],
+                  )),
+            ),
           ],
         ));
   }
@@ -395,33 +408,39 @@ class _PageSettingState extends State<PageSetting> {
                   borderRadius: BorderRadius.circular(2)),
               child: Container(
                 height: 120,
-                width: MediaQuery.of(context).size.width * 0.99,
+                width: MediaQuery.of(context).size.width,
                 child: Padding(
-                    padding: const EdgeInsets.all(13.0),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Keluar dari Pico Mobile',
-                          style: TextStyle(
-                              fontFamily: 'Quattro',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w800,
-                              color: Colors.cyan[900]),
-                        ),
-                        SizedBox(
-                          height: 17,
-                        ),
-                        Text(
-                          'Apakah Anda ingin keluar?',
-                          style: TextStyle(
-                              fontFamily: 'Quattro',
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black45),
-                        ),
-                        SizedBox(
-                          height: 35,
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Keluar dari Pico Mobile',
+                                style: TextStyle(
+                                    fontFamily: 'Quattro',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w800,
+                                    color: Colors.cyan[900]),
+                              ),
+                              SizedBox(
+                                height: 17,
+                              ),
+                              Text(
+                                'Apakah Anda ingin keluar?',
+                                style: TextStyle(
+                                    fontFamily: 'Quattro',
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black45),
+                              ),
+                            ],
+                          ),
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -445,10 +464,7 @@ class _PageSettingState extends State<PageSetting> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginScreen()),
-                                    (Route<dynamic> route) => false);
+                                logout();
                               },
                               child: Text(
                                 'Keluar',
@@ -465,6 +481,16 @@ class _PageSettingState extends State<PageSetting> {
                     )),
               ));
         });
+  }
+
+  logout() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.clear();
+    // ignore: deprecated_member_use
+    sharedPreferences.commit();
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+        (Route<dynamic> route) => false);
   }
 
   @override
